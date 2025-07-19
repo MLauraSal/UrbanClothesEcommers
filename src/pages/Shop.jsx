@@ -1,94 +1,99 @@
-import React from "react";
-import { BsSuitHeartFill } from "react-icons/bs";
-import { GiReturnArrow } from "react-icons/gi";
-import { FaShoppingCart } from "react-icons/fa";
-import { MdOutlineLabelImportant } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
-import { useCart } from "../hooks/useCart";
-import { useProducts } from "../hooks/useProducts";
-const Shop = () => {
-  const navigate = useNavigate();
-  const { addToCart } = useCart();
-  const { product, products } = useProducts();
+import { useEffect, useState } from "react";
+import ProductGrid from "../components/Home/ProductGrid.jsx";
 
-  const handleProductDetails = () => {
-    navigate(`/products/${product.id}`, {
-      state: {
-        item: product,
-      },
-    });
-  };
 
-  
+export default function CategoryFilter() {
+  const [products, setProducts] = useState([]);
+  const [filteredCategory, setFilteredCategory] = useState(null);
+  const [categories, setCategories] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 12;
+
+  // Obtener productos desde la API
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await fetch("https://api.escuelajs.co/api/v1/products");
+        const data = await res.json();
+        setProducts(data);
+      } catch (err) {
+        console.error("Error al obtener productos:", err);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  // Obtener categorías
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await fetch("https://api.escuelajs.co/api/v1/categories");
+        const data = await res.json();
+        setCategories(data);
+      } catch (err) {
+        console.error("Error al obtener categorías:", err);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
+  // Filtrar productos por categoría
+  const filteredProducts = filteredCategory
+    ? products.filter((p) => p.category?.id === filteredCategory)
+    : products;
+
+  // Lógica de paginación
+  const indexOfLast = currentPage * productsPerPage;
+  const indexOfFirst = indexOfLast - productsPerPage;
+  const currentProducts = filteredProducts.slice(indexOfFirst, indexOfLast);
+
+  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
 
   return (
-    <div className="mb-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-      {products.map((product) => (
-        <div key={product.id}  className="border border-cultured rounded-md overflow-hidden relative transition hover:shadow-md flex flex-col justify-between">
-          <div className="relative flex justify-center items-center h-48 bg-white overflow-hidden mt-4">
-            <div>
-              <img
-                className="w-full h-full object-contain"
-                src={product.image[0]}
-                alt={product.title}
-              />
-            </div>
-            <div className="flex flex-col justify-between p-4 min-h-[150px]">
-              {product.category && (
-                <p className="text-dodgerBlue text-xs font-medium uppercase mb-2">
-                  {product.category?.name}
-                </p>
-              )}
-            </div>
-            <div className="w-full h-32 absolute bg-white -bottom-[130px] group-hover:bottom-0 duration-700">
-              <ul className="w-full h-full flex flex-col items-end justify-center gap-2 font-titleFont px-2 border-l border-r">
-                <li className="text-[#767676] hover:text-primeColor text-sm font-normal border-b-[1px] border-b-gray-200 hover:border-b-primeColor flex items-center justify-end gap-2 hover:cursor-pointer pb-1 duration-300 w-full">
-                  Compare
-                  <span>
-                    <GiReturnArrow />
-                  </span>
-                </li>
-                <li
-                  onClick={addToCart}
-                  className="text-[#767676] hover:text-primeColor text-sm font-normal border-b-[1px] border-b-gray-200 hover:border-b-primeColor flex items-center justify-end gap-2 hover:cursor-pointer pb-1 duration-300 w-full"
-                >
-                  Add to Cart
-                  <span>
-                    <FaShoppingCart />
-                  </span>
-                </li>
-                <li
-                  onClick={handleProductDetails}
-                  className="text-[#767676] hover:text-primeColor text-sm font-normal border-b-[1px] border-b-gray-200 hover:border-b-primeColor flex items-center justify-end gap-2 hover:cursor-pointer pb-1 duration-300 w-full"
-                >
-                  View Details
-                  <span className="text-lg">
-                    <MdOutlineLabelImportant />
-                  </span>
-                </li>
-                <li className="text-[#767676] hover:text-primeColor text-sm font-normal border-b-[1px] border-b-gray-200 hover:border-b-primeColor flex items-center justify-end gap-2 hover:cursor-pointer pb-1 duration-300 w-full">
-                  Add to Wish List
-                  <span>
-                    <BsSuitHeartFill />
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="max-w-80 py-6 flex flex-col gap-1 border-[1px] border-t-0 px-4">
-            <div className="flex items-center justify-between font-titleFont">
-              <h2 className="text-lg text-primeColor font-bold truncate">
-                {product.title}
-              </h2>
-              <p className="text-[#767676] text-[14px]">${product.price}</p>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
+    <div className="max-w-7xl mx-auto px-4 py-10">
+      <h1 className="text-3xl font-bold mb-6">Todos los Productos</h1>
+
+      <div className="flex flex-wrap gap-4 mb-8">
+        <button
+          className={`px-4 py-2 border rounded ${filteredCategory === null ? "bg-blue-600 text-white" : "bg-white"}`}
+          onClick={() => setFilteredCategory(null)}
+        >
+          Todos
+        </button>
+        {categories.map((cat) => (
+          <button
+            key={cat.id}
+            className={`px-4 py-2 border rounded ${
+              filteredCategory === cat.id ? "bg-blue-600 text-white" : "bg-white"
+            }`}
+            onClick={() => {
+              setFilteredCategory(cat.id);
+              setCurrentPage(1);
+            }}
+          >
+            {cat.name}
+          </button>
+        ))}
+      </div>
+
+      <ProductGrid products={currentProducts} />
+
+      {/* Paginación */}
+      <div className="flex justify-center mt-8 gap-2">
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map((num) => (
+          <button
+            key={num}
+            onClick={() => setCurrentPage(num)}
+            className={`px-3 py-1 rounded ${
+              currentPage === num ? "bg-blue-500 text-white" : "bg-gray-200"
+            }`}
+          >
+            {num}
+          </button>
+        ))}
+      </div>
     </div>
   );
-};
-
-export default Shop;
+}

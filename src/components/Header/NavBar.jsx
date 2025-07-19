@@ -205,7 +205,7 @@ export default function NavBar() {
                       to="/shop"
                       className="text-gray-600 hover:text-blue-500"
                     >
-                      Shopping
+                      Shop
                     </Link>
                   </li>
                   {user?.role === "admin" && (

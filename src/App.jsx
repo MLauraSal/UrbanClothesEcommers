@@ -18,6 +18,7 @@ import MobileNav from "./components/Header/MobileNav.jsx";
 import Checkout from "./pages/Checkout.jsx";
 import Footer from "./layouts/Footer.jsx";
 import CartPage from "./pages/CartPage.jsx";
+import Shop from "./pages/Shop.jsx";
 
 function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -42,6 +43,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/shop" element={<Shop />} />
 
           {/* protegidas solo para usuarios autenticados */}
           <Route
@@ -73,7 +75,7 @@ function App() {
           <Route
             path="/dashboard"
             element={
-              <ProtectedRoute allowedRoles={["admin"]}>
+              <ProtectedRoute allowedRoles="admin">
                 <Dashboard />
               </ProtectedRoute>
             }
