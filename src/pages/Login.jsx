@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import Swal from "sweetalert2";
 import { AccountCircle, Lock } from "@mui/icons-material";
@@ -69,9 +69,9 @@ const Login = () => {
           <h2 className="text-lg font-semibold text-gray-600">Login</h2>
           <p className="text-sm mt-2 text-gray-500">
             ¿No tienes cuenta?{" "}
-            <a href="/register" className="text-blue-600 hover:underline">
+            <Link to="/register" className="text-blue-600 hover:underline">
               Regístrate
-            </a>
+            </Link>
           </p>
         </div>
 
@@ -121,9 +121,9 @@ const Login = () => {
               <input type="checkbox" className="form-checkbox" />
               <span>Recuérdame</span>
             </label>
-            <a href="#" className="text-blue-500 hover:underline">
+            <Link to="" className="text-blue-500 hover:underline">
               ¿Olvidaste tu contraseña?
-            </a>
+            </Link>
           </div>
 
           <button
