@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { IoSearch } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { useProducts } from "../../hooks/useProducts";
@@ -7,6 +7,7 @@ export default function Search() {
   const { products } = useProducts();
   const [query, setQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const wrapperRef = useRef(null);
 
   const handleSearch = (e) => {
     const value = e.target.value;
@@ -23,8 +24,22 @@ export default function Search() {
     setFilteredProducts(results);
   };
 
+  // Cierra el dropdown al hacer clic fuera
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
+        setFilteredProducts([]);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className="relative w-full">
+    <div className="relative w-full" ref={wrapperRef}>
       {/* Input */}
       <input
         type="text"
@@ -48,6 +63,7 @@ export default function Search() {
               key={product.id}
               to={`/product/${product.id}`}
               className="flex items-center p-2 hover:bg-gray-100 transition"
+              onClick={() => setFilteredProducts([])} // cerrar al hacer click
             >
               <img
                 src={product.images[0]}
