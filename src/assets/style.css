@@ -1,0 +1,218 @@
+
+:root {
+
+    /*colors*/
+  
+    --spanish-gray: hsl(0, 0%, 60%);
+    --sonic-silver: hsl(0, 0%, 47%);
+    --eerie-black: hsl(0, 0%, 13%);
+    --dodgerBlue: hsl(210 100% 55.9%);
+    --sandy-brown: hsl(29, 90%, 65%);
+    --deepSkyBlue: hsla(195.06, 100%, 50%, 1);
+    --ocean-green: hsl(152, 51%, 52%);
+    --davys-gray: hsl(0, 0%, 33%);
+    --cultured: hsl(0, 0%, 93%);
+    --white: hsl(0, 100%, 100%);
+    --onyx: hsl(0, 0%, 27%);
+  
+    --facebook-cl: rgb(59, 89, 152);
+    --linked_in-cl: rgb(23, 106, 255);
+    --twitter-cl: rgb(85, 85, 85);
+    --instagram-cl: linear-gradient(#8a3ab9, #e95950, #fccc63);
+  
+    /* typography */
+  
+    --fs-1: 1.563rem;
+    --fs-2: 1.375rem;
+    --fs-3: 1.25rem;
+    --fs-4: 1.125rem;
+    --fs-5: 1rem;
+    --fs-6: 0.938rem;
+    --fs-7: 0.875rem;
+    --fs-8: 0.813rem;
+    --fs-9: 0.75rem;
+    --fs-10: 0.688rem;
+    --fs-11: 0.625rem;
+  
+    --weight-300: 300;
+    --weight-400: 400;
+    --weight-500: 500;
+    --weight-600: 600;
+    --weight-700: 700;
+  
+    /* border-radius */
+  
+    --border-radius-md: 10px;
+    --border-radius-sm: 5px;
+  
+    --box-shadow: 0 0.5rem 1rem rgba(0, 0, 0.1);
+  
+    /*transition */
+  
+    --transition-timing: 0.2s ease;
+  
+  }
+/**
+   * scrollbar style
+   */
+
+   body::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  body::-webkit-scrollbar-track {
+    background:#fff;
+    border-left: 1px solid hsl(0, 0%, 93%);
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background: hsl(0, 0%, 80%);
+    border: 3px solid #fff;
+    border-radius: 10px;
+  }
+  
+  body::-webkit-scrollbar-thumb:hover {
+    background: hsl(0, 0%, 70%);
+  }
+  
+
+.has-scrollbar {
+    padding-bottom: 5px;
+  }
+  
+  .has-scrollbar::-webkit-scrollbar {
+    width: 12px;
+    /* for vertical scroll */
+    height: 12px;
+    /* for horizontal scroll */
+  }
+  
+  .has-scrollbar::-webkit-scrollbar-thumb {
+    background: transparent;
+    border: 3px solid #fff;
+    border-radius: 20px;
+  }
+  
+  .has-scrollbar:hover::-webkit-scrollbar-thumb {
+    background: hsl(0, 0%, 90%);
+  }
+  
+  .has-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: hsl(0, 0%, 80%);
+  }
+  
+
+
+
+  
+ 
+/*-----------------------------------*\
+  #PRODUCT MINIMAL
+\*-----------------------------------*/
+
+
+
+
+
+
+.product-minimal .showcase:not(:last-child) { margin-bottom: 15px; }
+
+
+
+
+@media (min-width: 570px) {
+  
+  
+    .product-minimal .showcase-container {
+      min-width: 50%;
+    }
+}
+
+@media (min-width: 768px) {
+  
+ 
+    .product-minimal {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+  
+    .product-minimal .product-showcase {
+      min-width: calc(50% - 10px);
+      width: calc(50% - 10px);
+    }
+  
+    .product-minimal .showcase-container {
+      min-width: 100%;
+    }
+  
+}
+
+@media (min-width: 1024px) {
+  .product-container .content {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    margin-bottom: 30px;
+  }
+  .product-box {
+    min-width: calc(75% - 15px);
+  }
+
+    .product-minimal {
+        margin-bottom: 20px;
+      }
+    
+      .product-minimal .product-showcase {
+        min-width: calc(33.33% - 14px);
+        width: calc(33.33% - 14px);
+        flex-grow: 1;
+      }
+    
+      .product-minimal .showcase-wrapper {
+        gap: 10px;
+      }
+    
+      .product-minimal .showcase-container {
+        padding: 2px;
+      }
+  
+      .product-featured .showcase {
+        display: grid;
+      }
+
+}
+@media (min-width: 1200px) {
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    /**
+           * #PRODUCT
+           */
+       
+        
+           .product-featured .showcase>div {
+            min-width: calc(50% - 10px);
+          }
+        
+          .product-featured .display-number {
+            --fs-5: 1.125rem;
+          }
+  
+   
+  
+  
+  
+  
+  
+  }  
+      
+

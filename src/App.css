@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.container {
+  width: 90%;
+  margin: auto;
+}
+
+.MuiBadge-badge {
+  background-color: #f87171 !important; /* Tailwind's red-400 */
+  color: white !important; /* White text for better contrast */
+}
+
+@layer utilities {
+  @media (min-width: 550px) {
+    .min-w-1\/2-550 {
+      min-width: 50%;
+    }
+  }
+  @media (min-width: 768px) {
+    .min-w-1\/2-768 {
+      min-width: 100%;
+    }
+  }
+}
