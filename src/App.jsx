@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useAuth } from "./hooks/useAuth"; // Asegurate de tener este hook
+import { useAuth } from "./hooks/useAuth.js"; // Asegurate de tener este hook
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import Home from "./pages/Home.jsx";
@@ -21,11 +21,11 @@ import CartPage from "./pages/CartPage.jsx";
 
 function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const { verificLog } = useAuth();
+  const { verifyLog } = useAuth();
 
   useEffect(() => {
-    verificLog();
-  }, []);
+    verifyLog();
+  }, [verifyLog]);
 
   const toggleCart = () => setIsCartOpen(!isCartOpen);
 

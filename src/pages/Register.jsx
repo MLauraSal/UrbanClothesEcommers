@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import Swal from "sweetalert2";
 
@@ -57,9 +57,9 @@ const Register = () => {
           <h2 className="text-2xl font-semibold text-gray-700">Registro</h2>
           <p className="text-sm text-gray-500 mt-2">
             ¿Ya tienes una cuenta?{" "}
-            <a href="/login" className="text-blue-600 hover:underline">
+            <Link to="/login" className="text-blue-600 hover:underline">
               Inicia sesión
-            </a>
+            </Link>
           </p>
         </div>
 

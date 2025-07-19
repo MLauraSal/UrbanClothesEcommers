@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
     setAdmin(false);
   };
 
-  const verificLog = () => {
+  const verifyLog = () => {
     const userToken = localStorage.getItem("authToken");
     const storedUser = localStorage.getItem("userData");
 
@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, admin, verificLog }}>
+    <AuthContext.Provider value={{ user, login, logout, admin, verifyLog }}>
       {children}
     </AuthContext.Provider>
   );
