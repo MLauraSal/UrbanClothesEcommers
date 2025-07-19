@@ -26,7 +26,7 @@ export default function ProductContainer() {
       <div className="container-fluid max-w-container mx-auto px-4">
         <Sale />
         <ProductFeature  />
-        <ProductGrid  onAddToCart={addToCart} />
+        <ProductGrid  addToCart={addToCart} />
         
       </div>
     

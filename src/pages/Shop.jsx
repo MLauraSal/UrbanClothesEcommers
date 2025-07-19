@@ -12,7 +12,7 @@ const Shop = () => {
   const { product, products } = useProducts();
 
   const handleProductDetails = () => {
-    navigate(`/product/${product.id}`, {
+    navigate(`/products/${product.id}`, {
       state: {
         item: product,
       },
@@ -30,7 +30,7 @@ const Shop = () => {
             <div>
               <img
                 className="w-full h-full object-contain"
-                src={product.images[0]}
+                src={product.image[0]}
                 alt={product.title}
               />
             </div>

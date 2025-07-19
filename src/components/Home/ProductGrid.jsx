@@ -1,105 +1,123 @@
 import React from "react";
-
 import { useProducts } from "../../hooks/useProducts.js";
 import { useCart } from "../../hooks/useCart.js";
-import { Link,useNavigate } from "react-router-dom";
-
-import { FaStar } from "react-icons/fa6";
-import { FaStarHalfAlt } from "react-icons/fa";
-
-import { BsSuitHeartFill } from "react-icons/bs";
-import { GiReturnArrow } from "react-icons/gi";
-
-import { MdOutlineLabelImportant } from "react-icons/md";
-
+import { Link, useNavigate } from "react-router-dom";
+import {
+  IoHeartOutline,
+  IoEyeOutline,
+  IoRepeatOutline,
+  IoBagHandleOutline,
+  IoStar,
+  IoStarOutline,
+} from "react-icons/io5";
+import Swal from "sweetalert2";
+import { useAuth } from "../../hooks/useAuth.js";
 
 const ProductGrid = () => {
-  const {products } = useProducts();
-  const navigate = useNavigate();
+  const { products } = useProducts();
   const { addToCart } = useCart();
+  const { user } = useAuth();
+  const navigate = useNavigate();
 
- 
-  const handleProductDetails = (product) => {
-  navigate(`/products/${product.id}`, {
-    state: { item: product },
-  });
-};
+
+  const handleAddToCart = (product) => {
+    if (!user) {
+      Swal.fire({
+        icon: "warning",
+        title: "Inicia sesión",
+        text: "Debes estar logueado para agregar productos al carrito.",
+        showCancelButton: true,
+        confirmButtonText: "Ir al login",
+        cancelButtonText: "Cancelar",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login");
+        }
+      });
+    }
+
+    addToCart(product);
+    Swal.fire({
+      icon: "success",
+      title: "Agregado al carrito",
+      text: `"${product.title}" fue agregado correctamente.`,
+      timer: 1000,
+      showConfirmButton: false,
+    });
+  };
 
   return (
-    <div className="mb-8 max-w-container mx-auto px-4">
-      <h2 className="text-eerieBlack text-base font-semibold tracking-wide capitalize border-b border-cultured mb-8 pb-2">
-        New Products
-      </h2>
-
-      <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-3 group">
-        {products.slice(0, 20).map((product) => (
+    <div className="px-4 py-10 max-w-7xl mx-auto">
+      <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">New Products</h2>
+      <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        {products.map((product) => (
           <div
             key={product.id}
-            className="w-[80%] border border-cultured rounded-md overflow-hidden relative transition hover:shadow-md flex flex-col justify-center"
+            className="bg-white shadow-md rounded-xl overflow-hidden flex flex-col hover:shadow-lg transition"
           >
-            <div className="relative flex justify-center items-center h-48 bg-white overflow-hidden ">
+            <div className="relative">
               <img
                 src={product.images[0]}
                 alt={product.title}
-                className="w-full h-full object-contain"
+                 crossOrigin="anonymous"
+                className="w-full h-56 object-contain p-4 bg-gray-100"
               />
-              <p className="absolute top-4 left-4 bg-oceanGreen text-white text-xs font-medium px-2 py-0.5 rounded-sm z-10">
+              <span className="absolute top-2 left-2 bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded">
                 15%
-              </p>
-              <div className="w-full h-32 absolute bg-white -bottom-[130px] group-hover:bottom-0 duration-700">
-                            <ul className="w-full h-full flex flex-col items-end justify-center gap-2 font-titleFont px-2 border-l border-r">
-                              <li className="text-[#767676] hover:text-primeColor text-sm font-normal border-b-[1px] border-b-gray-200 hover:border-b-primeColor flex items-center justify-end gap-2 hover:cursor-pointer pb-1 duration-300 w-full">
-                                Compare
-                                <span>
-                                  <GiReturnArrow />
-                                </span>
-                              </li>
-                             
-                              <li
-                                 onClick={() => handleProductDetails(product)}
-                                className="text-[#767676] hover:text-primeColor text-sm font-normal border-b-[1px] border-b-gray-200 hover:border-b-primeColor flex items-center justify-end gap-2 hover:cursor-pointer pb-1 duration-300 w-full"
-                              >
-                                View Details
-                                <span className="text-lg">
-                                  <MdOutlineLabelImportant />
-                                </span>
-                              </li>
-                              <li className="text-[#767676] hover:text-primeColor text-sm font-normal border-b-[1px] border-b-gray-200 hover:border-b-primeColor flex items-center justify-end gap-2 hover:cursor-pointer pb-1 duration-300 w-full">
-                                Add to Wish List
-                                <span>
-                                  <BsSuitHeartFill />
-                                </span>
-                              </li>
-                            </ul>
-                          </div>
+              </span>
+              <div className="absolute top-2 right-2 flex flex-col gap-2">
+                <button className="text-gray-600 hover:text-red-500">
+                  <IoHeartOutline size={20} />
+                </button>
+                <Link to={`/product/${product.id}`} className="text-gray-600 hover:text-blue-500">
+                  <IoEyeOutline size={20} />
+                </Link>
+                <button className="text-gray-600 hover:text-green-500">
+                  <IoRepeatOutline size={20} />
+                </button>
+                <button
+                  onClick={() => handleAddToCart(product)}
+                  className="text-gray-600 hover:text-indigo-600"
+                >
+                  <IoBagHandleOutline size={20} />
+                </button>
+              </div>
             </div>
 
-            <div className="flex flex-col justify-between p-4 min-h-[150px]">
-              <p className="text-dodgerBlue text-xs font-medium uppercase mb-2">
-                {product.category?.name}
-              </p>
-            
-              <Link to={`/product/${product.id}`}>
-                <h3 className="text-sonicSilver text-sm font-light capitalize tracking-wide leading-snug line-clamp-3 hover:text-eerieBlack transition mb-2">
-                  {product.title}
-                </h3>
-              </Link>
-              <div className="flex text-yellow-400 text-base mb-2">
-                 <FaStar /><FaStar />
-                               <FaStar /><FaStar />
-                               <FaStarHalfAlt />
+            <div className="p-4 flex-1 flex flex-col justify-between">
+              <div>
+                <p className="text-sm text-gray-500 mb-1">{product.category?.name}</p>
+                <Link to={`/product/${product.id}`}>
+                  <h3 className="text-md font-semibold text-gray-800 hover:text-indigo-600 line-clamp-2">
+                    {product.title}
+                  </h3>
+                </Link>
+                <div className="flex items-center mt-2 text-yellow-500">
+                  <IoStar />
+                  <IoStar />
+                  <IoStar />
+                  <IoStarOutline />
+                  <IoStarOutline />
+                </div>
               </div>
-              <div className="flex gap-2 text-sm font-semibold text-eerieBlack mb-3">
-                <p>${product.price}</p>
+              <div className="mt-4 flex justify-between items-center">
+                <p className="text-lg font-bold text-indigo-600">${product.price}</p>
               </div>
-             <div className="flex flex-col items-center">
-                <button
-                  onClick={() => addToCart(product)}
-                  className="bg-white text-dodgerBlue border border-dodgerBlue font-semibold uppercase px-4 py-2 rounded-md hover:bg-dodgerBlue hover:text-white transition mb-4"
-                >
-                  Add to Cart
-                </button>
-             </div>
+            </div>
+
+            <div className="p-4 border-t">
+            <button
+  onClick={() => handleAddToCart(product)}
+  className={`w-full py-2 rounded transition font-medium ${
+    user
+      ? "bg-indigo-600 text-white hover:bg-indigo-700"
+      : "bg-gray-300 text-gray-500 cursor-not-allowed"
+  }`}
+  title={!user ? "Debes iniciar sesión para agregar al carrito" : ""}
+>
+  Add to Cart
+</button>
+
             </div>
           </div>
         ))}
