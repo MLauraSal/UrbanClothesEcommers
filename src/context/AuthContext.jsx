@@ -1,43 +1,48 @@
-import { createContext,  useState } from "react";
+import { createContext, useState } from "react";
 
 const AuthContext = createContext();
-
-
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [admin, setAdmin] = useState(false);
 
+  const login = (userData) => {
+    const token = `fake-token-${userData.username}`;
+    localStorage.setItem("authToken", token);
+    localStorage.setItem("userData", JSON.stringify(userData));
 
-
-  const login = (username) => {
-    // Simulando la creación de un token (en una app real, esto sería generado por un servidor)
-    const token = `fake-token-${username}`;
-    if(username === "admin@ejemplo.com"){ //contraseña : admin1234
-      setAdmin(true)
+    if (userData.role === "admin") {
+      setAdmin(true);
     }
-    localStorage.setItem('authToken', token);
-    setUser(username);
+
+    setUser(userData);
   };
+
   const logout = () => {
-    localStorage.removeItem('authToken');
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("userData");
     setUser(null);
-    setAdmin(false)
+    setAdmin(false);
   };
 
-  function verificLog(){
-    const userToken = localStorage.getItem("authToken")
-    if(userToken && userToken == "fake-token-admin@gmail.com"){
-      setAdmin(true)
-      return
-    }if(userToken){
-      setUser(userToken)
+  const verificLog = () => {
+    const userToken = localStorage.getItem("authToken");
+    const storedUser = localStorage.getItem("userData");
+
+    if (userToken && storedUser) {
+      const parsedUser = JSON.parse(storedUser);
+      setUser(parsedUser);
+      if (parsedUser.role === "admin") {
+        setAdmin(true);
+      }
     }
-  }
+  };
+
   return (
     <AuthContext.Provider value={{ user, login, logout, admin, verificLog }}>
       {children}
     </AuthContext.Provider>
   );
 };
-export default AuthContext
+
+export default AuthContext;
