@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useAuth } from "./hooks/useAuth.js"; // Asegurate de tener este hook
+import { useState } from "react";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import Home from "./pages/Home.jsx";
@@ -18,17 +18,19 @@ import MobileNav from "./components/Header/MobileNav.jsx";
 import Checkout from "./pages/Checkout.jsx";
 import Footer from "./layouts/Footer.jsx";
 import CartPage from "./pages/CartPage.jsx";
-import Shop from "./pages/Shop.jsx";
+import { useAuth } from "./hooks/useAuth.js";
+import { useEffect } from "react";
+import Contact from "./pages/Contact.jsx";
 
 function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const toggleCart = () => setIsCartOpen(!isCartOpen);
   const { verifyLog } = useAuth();
 
   useEffect(() => {
     verifyLog();
-  }, [verifyLog]);
-
-  const toggleCart = () => setIsCartOpen(!isCartOpen);
+  }, [] );
 
   return (
     <>
@@ -37,13 +39,16 @@ function App() {
         <Header toggleCart={toggleCart} />
         <Cart isOpen={isCartOpen} toggleCart={toggleCart} />
 
+
+
+
         <Routes>
           {/* públicas */}
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/product/:id" element={<ProductDetail />} />
-          <Route path="/shop" element={<Shop />} />
+          <Route path="/contact" element={<Contact />} />
 
           {/* protegidas solo para usuarios autenticados */}
           <Route
@@ -75,7 +80,7 @@ function App() {
           <Route
             path="/dashboard"
             element={
-              <ProtectedRoute allowedRoles="admin">
+              <ProtectedRoute allowedRoles={["admin"]}>
                 <Dashboard />
               </ProtectedRoute>
             }
@@ -84,10 +89,12 @@ function App() {
             <Route path="/dashboard/products" element={<ProductTable />} />
           </Route>
         </Routes>
+
+
       </Router>
       <Footer />
     </>
   );
 }
 
-export default App;
+export default App;   

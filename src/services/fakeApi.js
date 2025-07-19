@@ -38,7 +38,7 @@ export async function getProductById(id) {
 /* Obtener todas las categorías */
 export async function getAllCategories() {
   try {
-    const res = await fetch(`${BASE_URL}/products/categories`);
+    const res = await fetch(`${BASE_URL}/categories`);
     return await res.json();
   } catch (error) {
     console.error("Error fetching categories:", error);

@@ -7,8 +7,7 @@ import {   getAllProducts,
   createProduct,
  
   getCategories,
-  createCategory,
-  deleteCategory } from '../services/fakeApi.js';
+ } from '../services/fakeApi.js';
 
 const ProductContext = createContext();
 
@@ -50,16 +49,7 @@ export const ProductProvider = ({ children }) => {
     setProducts((prev) => prev.filter((p) => p.id !== id));
   };
 
-  // CRUD: Categorías
-  const addCategory = async (categoryData) => {
-    const newCategory = await createCategory(categoryData);
-    setCategories((prev) => [...prev, newCategory]);
-  };
-
-  const removeCategory = async (id) => {
-    await deleteCategory(id);
-    setCategories((prev) => prev.filter((c) => c.id !== id));
-  };
+  
   return (
     <ProductContext.Provider value={{ products,
         categories,
@@ -67,8 +57,7 @@ export const ProductProvider = ({ children }) => {
         addProduct,
         editProduct,
         removeProduct,
-        addCategory,
-        removeCategory,
+       
         setProducts,
         setCategories,
         }}>

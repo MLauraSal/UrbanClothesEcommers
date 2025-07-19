@@ -182,15 +182,15 @@ export default function NavBar() {
                     </Link>
                   </li>
                   {user && user.role !== "admin" && (
-  <li>
-    <Link
-      to="/cartpage"
-      className="text-gray-600 hover:text-blue-500"
-    >
-      Cart
-    </Link>
-  </li>
-)}
+                    <li>
+                      <Link
+                        to="/cartpage"
+                        className="text-gray-600 hover:text-blue-500"
+                      >
+                        Cart
+                      </Link>
+                    </li>
+                  )}
 
                   <li>
                     <Link

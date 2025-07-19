@@ -76,6 +76,10 @@ function classNames(...classes) {
 export default function Example() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
 
+  const addToCart = (product) => {
+    console.log(`Product added to cart:`, product);
+  }
+
   return (
     <div className="bg-white">
       <div>
@@ -310,7 +314,7 @@ export default function Example() {
 
               {/* Product grid */}
               <div className="lg:col-span-3">
-                <ProductGrid/>
+                <ProductGrid addToCart={product} />
               </div>
             </div>
           </section>
