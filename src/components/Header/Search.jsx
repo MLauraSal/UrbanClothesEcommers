@@ -19,7 +19,7 @@ export default function Search() {
     }
 
     const results = products.filter((p) =>
-      p.title.toLowerCase().includes(value.toLowerCase())
+      p.name.toLowerCase().includes(value.toLowerCase())
     );
     setFilteredProducts(results);
   };
@@ -61,17 +61,17 @@ export default function Search() {
           {filteredProducts.map((product) => (
             <Link
               key={product.id}
-              to={`/product/${product.id}`}
+              to={`/products/${product.id}`}
               className="flex items-center p-2 hover:bg-gray-100 transition"
               onClick={() => setFilteredProducts([])} // cerrar al hacer click
             >
               <img
-                src={product.images[0]}
-                alt={product.title}
+                src={product.image}
+                alt={product.name}
                 className="w-10 h-10 object-cover rounded mr-3"
                 crossOrigin="anonymous"
               />
-              <span className="text-sm text-gray-700">{product.title}</span>
+              <span className="text-sm text-gray-700">{product.name}</span>
             </Link>
           ))}
         </div>
