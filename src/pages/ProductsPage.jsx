@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import ProductGrid from "../components/Home/ProductGrid.jsx";
 
 
-export default function CategoryFilter() {
+export default function ProductsPage() {
   const [products, setProducts] = useState([]);
   const [filteredCategory, setFilteredCategory] = useState(null);
   const [categories, setCategories] = useState([]);

@@ -15,12 +15,13 @@ import ProtectedRoute from "./routes/ProtectedRoute.jsx";
 import UserProtectedRoute from "./routes/UserProtectedRoute.jsx";
 import "./App.css";
 import MobileNav from "./components/Header/MobileNav.jsx";
-import Checkout from "./pages/Checkout.jsx";
+
 import Footer from "./layouts/Footer.jsx";
 import CartPage from "./pages/CartPage.jsx";
 import { useAuth } from "./hooks/useAuth.js";
 import { useEffect } from "react";
 import Contact from "./pages/Contact.jsx";
+import ProductsPage from "./pages/ProductsPage.jsx";
 
 function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -49,16 +50,10 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/products" element={<ProductsPage />} />
 
           {/* protegidas solo para usuarios autenticados */}
-          <Route
-            path="/checkout"
-            element={
-              <UserProtectedRoute>
-                <Checkout />
-              </UserProtectedRoute>
-            }
-          />
+      
           <Route
             path="/profile"
             element={

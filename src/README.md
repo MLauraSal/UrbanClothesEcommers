@@ -1,28 +1,43 @@
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=53&pause=1000&center=true&vCenter=true&width=460&lines=Urban+Clothes+)](https://git.io/typing-svg)
 
-# Proyecto de eCommerce de Indumentaria (Frontend)
+# Proyecto de eCommerce de Indumentaria (React-Vite)
 
 ## Descripción del Proyecto
 
-Este proyecto consiste en el desarrollo del **frontend** para un **eCommerce de indumentaria**, donde los usuarios pueden explorar, buscar y comprar ropa. El objetivo es crear una experiencia de usuario fluida, responsiva y atractiva, utilizando **REACT**, **VITE**, y **TAILWINDCSS**, sin frameworks adicionales.
+Proyecto desarrollado con **React, Vite, Material UI y TailwindCSS** para un **eCommerce de indumentaria** que simula una tienda en línea con funcionalidades de autenticación, carrito de compras, CRUD de productos, búsqueda, paginación y optimización para despliegue.
+
 
 ![alt text](<Screenshot 2024-11-15 at 21-34-40 Urban Clothes- eCommerce Website.png>)
 
 ## Características Principales
 
-- **Catálogo de productos**: Visualización de una variedad de prendas de vestir con detalles como nombre, precio e imagen.
-- **Búsqueda y filtros**: Los usuarios pueden buscar productos por categorías, tallas y rangos de precio, implementado con JavaScript.
+- **Catálogo de productos**: Visualización de una variedad de productos  con detalles como nombre, precio e imagen y categoria.
+- **Búsqueda y filtros**: Los usuarios pueden buscar productos por categorías, tallas y rangos de precio.
 - **Carrito de compras interactivo**: Agregar productos al carrito, actualizar el total en tiempo real, y mantener los datos del carrito utilizando **localStorage** para que persistan entre sesiones.
 - **Sistema de navegación**: Cambio dinámico en el menú de navegación para mostrar el perfil del usuario si está logueado.
-- **Responsividad**: Diseño adaptable a diferentes dispositivos (móviles, tablets y escritorio) utilizando CSS y JavaScript.
+- **Responsividad**: Diseño adaptable a diferentes dispositivos (móviles, tablets y escritorio) .
 
-## Tecnologías Utilizadas
-![lenguajes utilizados](https://imgs.search.brave.com/Xo2kes1eZSI4UI0BPeX-jU1-ctyVU1jlRq6M1oGUS98/rs:fit:860:0:0/g:ce/aHR0cDovL3d3dy5j/dXJzb3NnaXMuY29t/L3dwLWNvbnRlbnQv/dXBsb2Fkcy8yMDE3/LzA2L2xlbmd1YWpl/c18xLnBuZw)
-- **HTML5**: Estructura principal del sitio.
-- **CSS3**: Para el diseño y la apariencia del eCommerce, con un enfoque en un diseño limpio y adaptable.
-- **JavaScript (ES6+)**: Manejo de la lógica de interacción, como el carrito de compras, filtrado de productos, validación de formularios y manipulación del DOM.
-- **localStorage**: Almacenamiento de datos del carrito de compras para que los usuarios puedan continuar su compra al volver a la página.
-- **Swiper.js**: Implementación de carruseles de imágenes de productos.
+## 🚀 Tecnologías Utilizadas
+![lenguajes utilizados](<ChatGPT Image 20 jul 2025, 02_11_10 p.m.>)
+
+
+React
+
+Vite
+
+TailwindCSS
+
+Material UI
+
+React Router DOM
+
+MockAPI
+
+React Icons
+
+React Toastify
+
+React Helmet
 
 ## Uso de JavaScript
 
@@ -68,5 +83,132 @@ Este proyecto está abierto a contribuciones. Si deseas colaborar, crea un **pul
 Este proyecto está licenciado bajo la **Licencia MIT**. Consulta el archivo `LICENSE` para más detalles.
 
 
+🛒 E-Commerce App con React + Vite
+Proyecto desarrollado con React, Vite, Material UI y TailwindCSS que simula una tienda en línea con funcionalidades de autenticación, carrito de compras, CRUD de productos, búsqueda, paginación y optimización para despliegue.
 
+🚀 Tecnologías utilizadas
+React
+
+Vite
+
+TailwindCSS
+
+Material UI
+
+React Router DOM
+
+MockAPI
+
+React Icons
+
+React Toastify
+
+React Helmet
+
+✅ Requerimientos Implementados
+🔐 Requerimiento #1: Gestión del Carrito y Autenticación de Usuarios
+🛍️ Carrito de Compras (Context API)
+Implementación de CarritoContext para gestionar los productos.
+
+Funciones: agregar, eliminar y vaciar el carrito.
+
+Estado global mantenido con useContext.
+
+👤 Autenticación de Usuarios
+Creación de AuthContext para controlar la sesión.
+
+Login simulado utilizando localStorage.
+
+Rutas protegidas para asegurar acceso solo a usuarios autenticados (por ejemplo, el carrito o sección de administración).
+
+🛠️ Requerimiento #2: CRUD de Productos con MockAPI
+➕ Formulario para Agregar Productos
+Formulario controlado con useState.
+
+Validaciones:
+
+Nombre obligatorio.
+
+Precio mayor a 0.
+
+Descripción de al menos 10 caracteres.
+
+Envío de datos a MockAPI mediante POST.
+
+✏️ Edición y Eliminación de Productos
+Edición de productos con PUT a MockAPI.
+
+Eliminación con confirmación mediante modal.
+
+Manejo de errores y mensajes al usuario con React Toastify.
+
+⚠️ Manejo de Errores
+Mensajes de error en pantalla si falla la API.
+
+Gestión de estados de carga y error en la obtención de productos.
+
+📱 Requerimiento #3: Optimización de Diseño y Responsividad
+📐 Diseño Responsivo
+Sistema de grillas responsivo utilizando TailwindCSS (en reemplazo de Bootstrap).
+
+Estilos personalizados con Material UI y Tailwind para un diseño moderno.
+
+🎨 Interactividad
+Uso de React Icons en botones y elementos.
+
+Notificaciones de éxito/error con React Toastify.
+
+♿ SEO y Accesibilidad
+Uso de React Helmet para optimizar <title> y <meta>.
+
+Atributos ARIA para mejorar accesibilidad.
+
+🔍 Requerimiento #4: Funcionalidades de Búsqueda y Paginación
+🔎 Barra de Búsqueda
+Filtro dinámico por nombre o categoría.
+
+Resultados actualizados en tiempo real.
+
+📄 Paginación
+División de productos en páginas.
+
+Navegación entre páginas con botones y mejor experiencia de usuario.
+
+🚢 Requerimiento #5: Preparación para el Despliegue
+🧪 Pruebas de Compatibilidad
+Funcionalidad comprobada en:
+
+Móviles
+
+Tablets
+
+Escritorio
+
+⚙️ Optimización del Código
+Limpieza de código innecesario.
+
+Buena gestión del estado global.
+
+📝 Documentación Básica
+Incluye este README.md con:
+
+Tecnologías utilizadas.
+
+Requerimientos implementados.
+
+Instrucciones de instalación.
+
+🧾 Instalación y uso
+bash
+Copiar
+Editar
+# Clonar el repositorio
+git clone https://github.com/tu-usuario/tu-repo.git
+
+# Instalar dependencias
+npm install
+
+# Ejecutar en desarrollo
+npm run dev
+📦 Despliegue
 

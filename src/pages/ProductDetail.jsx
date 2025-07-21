@@ -90,7 +90,7 @@ const ProductDetail = () => {
                 className="bg-white rounded-xl shadow-md p-4 flex flex-col items-center text-center"
               >
                 <img
-                  src={item.images[0]}
+                  src={item.image}
                   alt={item.title}
                    crossOrigin="anonymous"
                   className="w-full h-48 object-contain mb-4"

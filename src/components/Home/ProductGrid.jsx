@@ -57,7 +57,7 @@ const ProductGrid = () => {
           >
             <div className="relative">
               <img
-                src={product.images[0]}
+                src={product.image}
                 alt={product.title}
                  crossOrigin="anonymous"
                 className="w-full h-56 object-contain p-4 bg-gray-100"
