@@ -41,12 +41,12 @@ export default function CartPage() {
               >
                 <img
                   src={item.image}
-                  alt={item.title}
+                  alt={item.name}
                   className="w-24 h-24 object-contain border rounded"
                   crossOrigin="anonymous"
                 />
                 <div className="flex-1">
-                  <h2 className="font-semibold text-lg">{item.title}</h2>
+                  <h2 className="font-semibold text-lg">{item.name}</h2>
                   <p className="text-sm text-gray-600">Precio: ${item.price}</p>
                   <div className="flex items-center mt-2 gap-2">
                     <Button size="small" onClick={() => decreaseQuantity(item.id)}>

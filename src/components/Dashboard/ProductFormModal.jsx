@@ -50,7 +50,7 @@ const ProductFormModal = ({ open, onClose, onSave, initialData }) => {
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>{initialData ? "Editar Producto" : "Nuevo Producto"}</DialogTitle>
       <DialogContent className="flex flex-col gap-4 py-4">
-        <TextField label="Nombre" name="name" value={formData.title} onChange={handleChange} fullWidth />
+        <TextField label="Nombre" name="name" value={formData.name} onChange={handleChange} fullWidth />
         <TextField label="Precio" name="price" value={formData.price} onChange={handleChange} type="number" fullWidth />
         <TextField label="Stock" name="stock" value={formData.stock} onChange={handleChange} type="number" fullWidth />
         <TextField label="URL de Imagen" name="image" value={formData.image} onChange={handleChange} fullWidth />

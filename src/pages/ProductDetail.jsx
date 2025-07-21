@@ -91,11 +91,11 @@ const ProductDetail = () => {
               >
                 <img
                   src={item.image}
-                  alt={item.title}
+                  alt={item.name}
                    crossOrigin="anonymous"
                   className="w-full h-48 object-contain mb-4"
                 />
-                <h4 className="font-semibold text-gray-800">{item.title}</h4>
+                <h4 className="font-semibold text-gray-800">{item.name}</h4>
                 <p className="text-indigo-600 font-medium mb-2">${item.price}</p>
                 <button
   onClick={() => handleAddToCart(product)}

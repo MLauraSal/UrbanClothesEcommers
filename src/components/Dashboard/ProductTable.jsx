@@ -76,7 +76,7 @@ const ProductTable = () => {
               products.map(product => (
                 <TableRow key={product.id}>
                   <TableCell>
-                    <Avatar variant="square" src={product.image} alt={product.title} />
+                    <Avatar variant="square" src={product.image} alt={product.name} />
                   </TableCell>
                   <TableCell>{product.name}</TableCell>
                   <TableCell>${product.price}</TableCell>
