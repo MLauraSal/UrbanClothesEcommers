@@ -21,7 +21,7 @@ import CartPage from "./pages/CartPage.jsx";
 import { useAuth } from "./hooks/useAuth.js";
 import { useEffect } from "react";
 import Contact from "./pages/Contact.jsx";
-import ProductsPage from "./pages/ProductsPage.jsx";
+
 
 function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -50,7 +50,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/products" element={<ProductsPage />} />
+          
 
           {/* protegidas solo para usuarios autenticados */}
           <Route

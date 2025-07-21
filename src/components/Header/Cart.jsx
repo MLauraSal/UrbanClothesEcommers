@@ -60,8 +60,8 @@ const Cart = ({ isOpen, toggleCart }) => {
                 }}
               >
                 <img
-                  src={item.images[0]}
-                  alt={item.title}
+                  src={item.image}
+                  alt={item.name}
                   style={{
                     width: 64,
                     height: 64,
@@ -71,7 +71,7 @@ const Cart = ({ isOpen, toggleCart }) => {
                   }}
                 />
                 <Box sx={{ flex: 1 }}>
-                  <Typography variant="subtitle2">{item.title}</Typography>
+                  <Typography variant="subtitle2">{item.name}</Typography>
                   <Typography variant="body2" color="text.secondary">
                     Price: ${item.price * item.quantity}
                   </Typography>
