@@ -52,14 +52,14 @@ const ProductDetail = () => {
         <div className="flex flex-col lg:flex-row gap-10 items-start">
           <div className="w-full lg:w-1/2">
             <img
-              src={product.images[0]}
-              alt={product.title}
+              src={product.image}
+              alt={product.name}
                crossOrigin="anonymous"
               className="w-full h-auto rounded-xl shadow-lg object-contain max-h-[500px] mx-auto"
             />
           </div>
           <div className="w-full lg:w-1/2 space-y-4">
-            <h1 className="text-3xl font-bold text-gray-800">{product.title}</h1>
+            <h1 className="text-3xl font-bold text-gray-800">{product.name}</h1>
             <p className="text-sm text-gray-500 uppercase">{product.category?.name}</p>
             <p className="text-2xl font-semibold text-indigo-600">${product.price}</p>
             <p className="text-gray-700">{product.description || "No description available."}</p>
