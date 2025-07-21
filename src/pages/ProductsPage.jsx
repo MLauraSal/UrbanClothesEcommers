@@ -8,7 +8,7 @@ export default function ProductsPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 12;
 
-  const API_BASE = "https://687acab0abb83744b7eddd67.mockapi.io";
+  const API_BASE = "https://687acab0abb83744b7eddd67.mockapi.io/";
 
   // Obtener productos desde MockAPI
   useEffect(() => {
@@ -29,7 +29,7 @@ export default function ProductsPage() {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await fetch(`${API_BASE}/categories`);
+        const res = await fetch(`${API_BASE}/category`);
         const data = await res.json();
         setCategories(data);
       } catch (err) {

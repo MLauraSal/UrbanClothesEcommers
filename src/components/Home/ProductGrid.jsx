@@ -58,7 +58,7 @@ const ProductGrid = () => {
             <div className="relative">
               <img
                 src={product.image}
-                alt={product.title}
+                alt={product.name}
                  crossOrigin="anonymous"
                 className="w-full h-56 object-contain p-4 bg-gray-100"
               />
@@ -89,7 +89,7 @@ const ProductGrid = () => {
                 <p className="text-sm text-gray-500 mb-1">{product.category?.name}</p>
                 <Link to={`/product/${product.id}`}>
                   <h3 className="text-md font-semibold text-gray-800 hover:text-indigo-600 line-clamp-2">
-                    {product.title}
+                    {product.name}
                   </h3>
                 </Link>
                 <div className="flex items-center mt-2 text-yellow-500">

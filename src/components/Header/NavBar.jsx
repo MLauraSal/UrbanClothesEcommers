@@ -202,7 +202,7 @@ export default function NavBar() {
                   </li>
                   <li>
                     <Link
-                      to="/shop"
+                      to="/products"
                       className="text-gray-600 hover:text-blue-500"
                     >
                       Shop
@@ -222,7 +222,7 @@ export default function NavBar() {
               </li>
 
               <li>
-                <Link to="/shop" className="hover:text-blue-500">
+                <Link to="/products" className="hover:text-blue-500">
                   Products
                 </Link>
               </li>
