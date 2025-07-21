@@ -40,7 +40,7 @@ const ProductGrid = () => {
     Swal.fire({
       icon: "success",
       title: "Agregado al carrito",
-      text: `"${product.title}" fue agregado correctamente.`,
+      text: `"${product.name}" fue agregado correctamente.`,
       timer: 1000,
       showConfirmButton: false,
     });

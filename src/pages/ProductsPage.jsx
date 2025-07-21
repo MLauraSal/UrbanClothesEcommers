@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import ProductGrid from "../components/Home/ProductGrid.jsx";
 
-
 export default function ProductsPage() {
   const [products, setProducts] = useState([]);
   const [filteredCategory, setFilteredCategory] = useState(null);
@@ -9,11 +8,13 @@ export default function ProductsPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 12;
 
-  // Obtener productos desde la API
+  const API_BASE = "https://687acab0abb83744b7eddd67.mockapi.io";
+
+  // Obtener productos desde MockAPI
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch("https://api.escuelajs.co/api/v1/products");
+        const res = await fetch(`${API_BASE}/products`);
         const data = await res.json();
         setProducts(data);
       } catch (err) {
@@ -24,11 +25,11 @@ export default function ProductsPage() {
     fetchProducts();
   }, []);
 
-  // Obtener categorías
+  // Obtener categorías desde MockAPI
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await fetch("https://api.escuelajs.co/api/v1/categories");
+        const res = await fetch(`${API_BASE}/categories`);
         const data = await res.json();
         setCategories(data);
       } catch (err) {
@@ -41,14 +42,13 @@ export default function ProductsPage() {
 
   // Filtrar productos por categoría
   const filteredProducts = filteredCategory
-    ? products.filter((p) => p.category?.id === filteredCategory)
+    ? products.filter((p) => p.category === filteredCategory)
     : products;
 
   // Lógica de paginación
   const indexOfLast = currentPage * productsPerPage;
   const indexOfFirst = indexOfLast - productsPerPage;
   const currentProducts = filteredProducts.slice(indexOfFirst, indexOfLast);
-
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
 
   return (
@@ -66,10 +66,10 @@ export default function ProductsPage() {
           <button
             key={cat.id}
             className={`px-4 py-2 border rounded ${
-              filteredCategory === cat.id ? "bg-blue-600 text-white" : "bg-white"
+              filteredCategory === cat.name ? "bg-blue-600 text-white" : "bg-white"
             }`}
             onClick={() => {
-              setFilteredCategory(cat.id);
+              setFilteredCategory(cat.name);
               setCurrentPage(1);
             }}
           >
@@ -80,7 +80,6 @@ export default function ProductsPage() {
 
       <ProductGrid products={currentProducts} />
 
-      {/* Paginación */}
       <div className="flex justify-center mt-8 gap-2">
         {Array.from({ length: totalPages }, (_, i) => i + 1).map((num) => (
           <button

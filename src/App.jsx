@@ -15,7 +15,7 @@ import ProtectedRoute from "./routes/ProtectedRoute.jsx";
 import UserProtectedRoute from "./routes/UserProtectedRoute.jsx";
 import "./App.css";
 import MobileNav from "./components/Header/MobileNav.jsx";
-
+import Checkout from "./pages/Checkout.jsx";
 import Footer from "./layouts/Footer.jsx";
 import CartPage from "./pages/CartPage.jsx";
 import { useAuth } from "./hooks/useAuth.js";
@@ -53,7 +53,14 @@ function App() {
           <Route path="/products" element={<ProductsPage />} />
 
           {/* protegidas solo para usuarios autenticados */}
-      
+          <Route
+            path="/checkout"
+            element={
+              <UserProtectedRoute>
+                <Checkout />
+              </UserProtectedRoute>
+            }
+          />
           <Route
             path="/profile"
             element={

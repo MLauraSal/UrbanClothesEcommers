@@ -78,7 +78,7 @@ const ProductTable = () => {
                   <TableCell>
                     <Avatar variant="square" src={product.image} alt={product.title} />
                   </TableCell>
-                  <TableCell>{product.title}</TableCell>
+                  <TableCell>{product.name}</TableCell>
                   <TableCell>${product.price}</TableCell>
                   <TableCell>{product.stock}</TableCell>
                   <TableCell>{product.category}</TableCell>
