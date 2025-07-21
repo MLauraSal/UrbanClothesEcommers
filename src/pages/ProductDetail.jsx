@@ -1,20 +1,32 @@
 // src/pages/ProductDetail.jsx
-import { useParams,useNavigate } from "react-router-dom";
+import { useParams,useNavigate,Link } from "react-router-dom";
 import { useProducts } from "../hooks/useProducts";
 import { useCart } from "../hooks/useCart";
 import Swal from "sweetalert2";
 import { useAuth } from "../hooks/useAuth"; 
+import {
+  IoHeartOutline,
+  IoEyeOutline,
+  IoRepeatOutline,
+  IoBagHandleOutline,
+  IoStar,
+  IoStarOutline,
+} from "react-icons/io5";
 
 const ProductDetail = () => {
   const { id } = useParams();
-  const { products } = useProducts();
-  const { addToCart } = useCart();
-  const { user } = useAuth(); 
-  const navigate = useNavigate();
+const { products, loading } = useProducts();
+const { addToCart } = useCart();
+const { user } = useAuth(); 
+const navigate = useNavigate();
 
-  const product = products.find((p) => p.id === parseInt(id));
+const product = products.find((p) => String(p.id) === String(id));
 
-  if (!product) return <p className="text-center text-gray-500 py-10">Loading...</p>;
+
+if (loading) return <p className="text-center text-gray-500 py-10">Loading...</p>;
+
+if (!product) return <p className="text-center text-red-500 py-10">Producto no encontrado.</p>;
+
 
   const relatedProducts = products.filter(
     (p) => p.category === product.category && p.id !== product.id
@@ -60,7 +72,7 @@ const ProductDetail = () => {
           </div>
           <div className="w-full lg:w-1/2 space-y-4">
             <h1 className="text-3xl font-bold text-gray-800">{product.name}</h1>
-            <p className="text-sm text-gray-500 uppercase">{product.category?.name}</p>
+            <p className="text-sm text-gray-500 uppercase">{product.category}</p>
             <p className="text-2xl font-semibold text-indigo-600">${product.price}</p>
             <p className="text-gray-700">{product.description || "No description available."}</p>
             <button
@@ -86,18 +98,64 @@ const ProductDetail = () => {
           <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {relatedProducts.slice(0, 4).map((item) => (
               <div
-                key={item.id}
-                className="bg-white rounded-xl shadow-md p-4 flex flex-col items-center text-center"
-              >
-                <img
-                  src={item.image}
-                  alt={item.name}
-                   crossOrigin="anonymous"
-                  className="w-full h-48 object-contain mb-4"
-                />
-                <h4 className="font-semibold text-gray-800">{item.name}</h4>
-                <p className="text-indigo-600 font-medium mb-2">${item.price}</p>
+            key={item.id}
+            className="bg-white shadow-md rounded-xl overflow-hidden flex flex-col hover:shadow-lg transition"
+          >
+            <div className="relative">
+              <img
+                src={item.image}
+                alt={item.name}
+                 crossOrigin="anonymous"
+                className="w-full h-56 object-contain p-4 bg-gray-100"
+              />
+              <span className="absolute top-2 left-2 bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded">
+                15%
+              </span>
+              <div className="absolute top-2 right-2 flex flex-col gap-2">
+                <button className="text-gray-600 hover:text-red-500">
+                  <IoHeartOutline size={20} />
+                </button>
+                <Link to={`/products/${item.id}`} className="text-gray-600 hover:text-blue-500">
+                  <IoEyeOutline size={20} />
+                </Link>
+                <button className="text-gray-600 hover:text-green-500">
+                  <IoRepeatOutline size={20} />
+                </button>
                 <button
+                  onClick={() => handleAddToCart(product)}
+                  className="text-gray-600 hover:text-indigo-600"
+                >
+                  <IoBagHandleOutline size={20} />
+                </button>
+              </div>
+            </div>
+
+            <div className="p-4 flex-1 flex flex-col justify-between">
+              <div>
+                <p className="text-sm text-gray-500 mb-1">{item.category}</p>
+                <Link to={`/products/${product.id}`}>
+                  <h3 className="text-md font-semibold text-gray-800 hover:text-indigo-600 line-clamp-2">
+                    {item.name}
+                  </h3>
+                </Link>
+                <p className="text-xs text-sonicSilver font-light mb-2">
+                  {item.description}
+                </p>
+                <div className="flex items-center mt-2 text-yellow-500">
+                  <IoStar />
+                  <IoStar />
+                  <IoStar />
+                  <IoStarOutline />
+                  <IoStarOutline />
+                </div>
+              </div>
+              <div className="mt-4 flex justify-between items-center">
+                <p className="text-lg font-bold text-indigo-600">${item.price}</p>
+              </div>
+            </div>
+
+            <div className="p-4 border-t">
+            <button
   onClick={() => handleAddToCart(product)}
   className={`w-full py-2 rounded transition font-medium ${
     user
@@ -108,7 +166,9 @@ const ProductDetail = () => {
 >
   Add to Cart
 </button>
-              </div>
+
+            </div>
+          </div>
             ))}
           </div>
         </section>

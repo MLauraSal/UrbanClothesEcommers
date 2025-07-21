@@ -231,11 +231,7 @@ export default function NavBar() {
                   Blog
                 </a>
               </li>
-              <li>
-                <a href="#services" className="hover:text-blue-500">
-                  Services
-                </a>
-              </li>
+             
             </ul>
           </div>
           <div className="col_3 w-[25%] flex justify-end items-center">

@@ -69,7 +69,7 @@ const ProductGrid = () => {
                 <button className="text-gray-600 hover:text-red-500">
                   <IoHeartOutline size={20} />
                 </button>
-                <Link to={`/product/${product.id}`} className="text-gray-600 hover:text-blue-500">
+                <Link to={`/products/${product.id}`} className="text-gray-600 hover:text-blue-500">
                   <IoEyeOutline size={20} />
                 </Link>
                 <button className="text-gray-600 hover:text-green-500">
@@ -86,12 +86,15 @@ const ProductGrid = () => {
 
             <div className="p-4 flex-1 flex flex-col justify-between">
               <div>
-                <p className="text-sm text-gray-500 mb-1">{product.category?.name}</p>
-                <Link to={`/product/${product.id}`}>
+                <p className="text-sm text-gray-500 mb-1">{product.category}</p>
+                <Link to={`/products/${product.id}`}>
                   <h3 className="text-md font-semibold text-gray-800 hover:text-indigo-600 line-clamp-2">
                     {product.name}
                   </h3>
                 </Link>
+                <p className="text-xs text-sonicSilver font-light mb-2">
+                  {product.description}
+                </p>
                 <div className="flex items-center mt-2 text-yellow-500">
                   <IoStar />
                   <IoStar />
